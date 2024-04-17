@@ -1,0 +1,33 @@
+from  termcolor import colored
+import random
+
+print("I'm thinking of a number between 1 and 100. Try to guess it! \n *** Type H for hint but your times will increase by 1 ***")
+def main():
+    num = random.randint(1,100)
+    time= 0
+    while True:
+        inp = input(" Guess the number! ( H/Hint E/Exit ): ")
+        time+=1
+        if inp == 'H':
+            print(colored(" Think about cutting space where My number is", 'yellow', attrs=['bold']))
+        elif inp =='E':
+            print(colored(" Exited",'red',attrs=['bold']))
+            break
+        elif int(inp) == num :
+            print(colored(" *** Congrat num is {} | Done in {} time *** ".format(num,time), 'green', attrs=['bold']))
+            print(colored("PLAY AGAIN ? [y/n] :", 'yellow', attrs=['bold']),end='')
+            inp = input("")
+            if inp ==  'y':
+                main()
+            elif inp == 'n':
+                print(colored(" Exited",'red',attrs=['bold']))
+                break
+            else:
+                print(colored(" Enter y/n ".format(num,time), 'red', attrs=['bold']))
+                
+            break
+        elif int(inp) < num :
+            print(" More than {}".format(inp))
+        elif int(inp) > num :
+            print(" Less than {}".format(inp))
+main()
